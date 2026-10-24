@@ -1,0 +1,12 @@
+name = "TNDecoder3DColor"
+uuid = "70aaff62-99a7-4aa9-a989-9294d8c346b0"
+version = "0.1.0"
+authors = ["Hussan ul Maab"]
+
+[deps]
+ITensors = "9136182c-28ba-11e9-034c-db9fb085ebd5"
+OMEinsum = "ebe7aa44-baf0-506c-a96f-8464559b3922"
+
+[compat]
+ITensors = "0.9.31"
+OMEinsum = "0.9.4"
