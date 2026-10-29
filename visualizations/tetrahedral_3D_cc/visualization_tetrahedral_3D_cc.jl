@@ -1,8 +1,8 @@
 # visualization_tetrahedral_3D_cc.jl -- interactive 3D viewer for the tetrahedral 3D color code
 #
-#   julia visualizations/visualization_tetrahedral_3D_cc.jl        distance 3
-#   julia visualizations/visualization_tetrahedral_3D_cc.jl 5      distance 5
-#   in the REPL:  include("visualizations/visualization_tetrahedral_3D_cc.jl"); show_viewer(5)
+#   julia visualizations/tetrahedral_3D_cc/visualization_tetrahedral_3D_cc.jl        distance 3
+#   julia visualizations/tetrahedral_3D_cc/visualization_tetrahedral_3D_cc.jl 5      distance 5
+#   in the REPL:  include("visualizations/tetrahedral_3D_cc/visualization_tetrahedral_3D_cc.jl"); show_viewer(5)
 #
 # Everything drawn comes from codes/tetrahedral_3D_cc.jl, the same file the decoder uses: the
 # qubit positions, H_X and H_Z (every stabilizer-to-qubit line is one nonzero entry of a row),
@@ -12,13 +12,14 @@
 #         cell or stabilizer selects it and the panel describes it
 # Panel   the distance d, what to show, a slab that cuts the tetrahedron into layers, sliders
 #         that pick an X or Z stabilizer, and "isolate the selection" to look at it alone;
-#         "save picture" (or the s key) saves the 3D scene as a PNG in visualizations/figure_exports
+#         "save picture" (or the s key) saves the 3D scene as a PNG in the folder figure_exports
+#         next to this file
 
 using GLMakie
 using LinearAlgebra
 
-include(joinpath(@__DIR__, "..", "zsrc", "tn_generation.jl"))      # the CSSCode struct
-include(joinpath(@__DIR__, "..", "codes", "tetrahedral_3D_cc.jl"))   # the code
+include(joinpath(@__DIR__, "..", "..", "zsrc", "tn_generation.jl"))      # the CSSCode struct
+include(joinpath(@__DIR__, "..", "..", "codes", "tetrahedral_3D_cc.jl"))   # the code
 
 const GB = GLMakie.Makie.GeometryBasics
 
@@ -716,8 +717,8 @@ end
 # ------------------------------------------------------------------------- the viewer
 
 # The 3D scene without the panel, exactly as it is seen, as a PNG at 3 times the screen resolution
-# in visualizations/figure_exports, and its camera in camera_d<d>.txt next to it (the figures
-# file, tetrahedral_3D_cc_figures.jl, loads that camera with its key c).
+# in visualizations/tetrahedral_3D_cc/figure_exports, and its camera in camera_d<d>.txt next to it
+# (the figures file, tetrahedral_3D_cc_figures.jl, loads that camera with its key c).
 function save_view(fig, scene3d, d)
     folder = joinpath(@__DIR__, "figure_exports")
     mkpath(folder)

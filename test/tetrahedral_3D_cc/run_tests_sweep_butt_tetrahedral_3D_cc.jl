@@ -8,14 +8,14 @@ using Random
 # the same p, pure phase flips (Z on each qubit with probability p) and pure bit flips (X with
 # probability p), perfect syndromes. Their logical error rate is the average of the two runs.
 noise_models = ["phaseflip", "bitflip"]
-distances = [3, 5]
-# The p of Butt et al. (their Fig. 3a, digitized in results/) from 0.26% to 3.4%, and five more near
-# the crossing. d = 7 and 9 leave out the lowest two (no failures there with these sample numbers);
-# d = 9 stops at 2.34%, as its approximation is not reliable from about 2.5% on.
+distances = [3, 5, 7, 9]
+# The p of Butt et al. (their Fig. 3a, digitized in results/tetrahedral_3D_cc/) from 0.26% to 3.4%,
+# and five more near the crossing. d = 7 and 9 leave out the lowest two (no failures there with these
+# sample numbers); d = 9 stops at 2.34%, as its approximation is not reliable from about 2.5% on.
 butt_points = [0.002637, 0.003793, 0.005456, 0.007848, 0.01129, 0.01624, 0.02336, 0.0336]
 grid = sort([butt_points; 0.012; 0.014; 0.018; 0.020; 0.022])
 physical_error_rates = Dict(3 => grid, 5 => grid, 7 => grid[3:end], 9 => [p for p in grid[3:end] if p < 0.025])
-no_of_samples = Dict(3 => 10000, 5 => 10000, 7 => 1500, 9 => 1000)
+no_of_samples = Dict(3 => 10000, 5 => 10000, 7 => 1500, 9 => 1500)
 # Tolerance 0.0 and a max_entries larger than any table is exact: phase flips up to d = 7
 # (0.44 s per sample there); d = 9 needs the approximation. Bit flips use the approximation from
 # d = 7 on (2 ms per sample instead of 0.7 s; they hardly ever fail there anyway).
@@ -24,12 +24,12 @@ tolerance = Dict("phaseflip" => Dict(3 => 0.0, 5 => 0.0, 7 => 0.0, 9 => 1e-8),
 max_entries = Dict("phaseflip" => Dict(3 => 10^7, 5 => 10^7, 7 => 10^7, 9 => 10^5),
     "bitflip" => Dict(3 => 10^7, 5 => 10^7, 7 => 10^5, 9 => 10^5))
 
-# One results file per noise model, in the format of results/sweep_tetrahedral_3D_cc.csv: a row per
-# (d, p), written as soon as that point finishes.
+# One results file per noise model, in results/tetrahedral_3D_cc/ and in the format of
+# sweep_tetrahedral_3D_cc.csv there: a row per (d, p), written as soon as that point finishes.
 #   fresh_start = true    the files are started again: the rows of earlier runs are deleted
 #   fresh_start = false   the rows are added to the files (to add a distance to an earlier run)
 fresh_start = true
-results_file(noise) = joinpath(@__DIR__, "..", "..", "results", "sweep_butt_$(noise)_tetrahedral_3D_cc.csv")
+results_file(noise) = joinpath(@__DIR__, "..", "..", "results", "tetrahedral_3D_cc", "sweep_butt_$(noise)_tetrahedral_3D_cc.csv")
 for noise in noise_models
     if fresh_start || !isfile(results_file(noise))
         open(results_file(noise), "w") do io

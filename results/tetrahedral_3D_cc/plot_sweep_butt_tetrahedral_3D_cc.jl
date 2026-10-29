@@ -2,7 +2,7 @@
 # their noise, from the files that test/tetrahedral_3D_cc/run_tests_sweep_butt_tetrahedral_3D_cc.jl
 # writes in this folder: sweep_butt_phaseflip_tetrahedral_3D_cc.csv and sweep_butt_bitflip_tetrahedral_3D_cc.csv
 #
-#   julia results/plot_sweep_butt_tetrahedral_3D_cc.jl     (saves results/butt_comparison_tetrahedral_3D_cc.png)
+#   julia results/tetrahedral_3D_cc/plot_sweep_butt_tetrahedral_3D_cc.jl     (saves butt_comparison_tetrahedral_3D_cc.png here)
 #
 # One graph in the style of their Fig. 3a: the logical error rate, averaged over the bit-flip and the
 # phase-flip run as they report it, against p.

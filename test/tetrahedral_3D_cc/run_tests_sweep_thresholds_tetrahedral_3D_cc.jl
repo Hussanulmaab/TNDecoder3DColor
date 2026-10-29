@@ -13,7 +13,7 @@ using Random
 # For independent X and Z errors the two do not affect each other, so any pair of rates (pX, pZ)
 # can be read off the two curves.
 noise_models = ["phaseflip", "bitflip"]
-distances = [3, 5]
+distances = [3, 5, 7, 9]
 # Phase flips: dense around 1.9%. d = 7 and 9 leave out 0.5% and 0.8% (no failures there with these
 # sample numbers); d = 9 stops below 2.5%, as its approximation is not reliable from about 2.5% on.
 phase_grid = [0.005, 0.008, 0.010, 0.012, 0.014, 0.015, 0.016, 0.017, 0.018, 0.019, 0.020, 0.021, 0.022, 0.024, 0.027, 0.030]
@@ -23,18 +23,18 @@ bit_grid = [0.05, 0.10, 0.15, 0.18, 0.20, 0.22, 0.24, 0.26, 0.28, 0.30, 0.33]
 physical_error_rates = Dict(
     "phaseflip" => Dict(3 => phase_grid, 5 => phase_grid, 7 => phase_grid[3:end], 9 => [p for p in phase_grid[3:end] if p < 0.025]),
     "bitflip" => Dict(3 => bit_grid, 5 => bit_grid, 7 => bit_grid[3:end]))
-no_of_samples = Dict(3 => 10000, 5 => 10000, 7 => 2000, 9 => 1000)
+no_of_samples = Dict(3 => 10000, 5 => 10000, 7 => 1500, 9 => 1500)
 # Tolerance 0.0 and a max_entries larger than any table is exact: possible up to d = 7 for both
 # (0.44 s per sample for phase flips, 0.7 s for bit flips there); d = 9 needs the approximation.
 tolerance = Dict(3 => 0.0, 5 => 0.0, 7 => 0.0, 9 => 1e-8)
 max_entries = Dict(3 => 10^7, 5 => 10^7, 7 => 10^7, 9 => 10^5)
 
-# One results file per noise model, in the format of results/sweep_tetrahedral_3D_cc.csv: a row per
-# (d, p), written as soon as that point finishes.
+# One results file per noise model, in results/tetrahedral_3D_cc/ and in the format of
+# sweep_tetrahedral_3D_cc.csv there: a row per (d, p), written as soon as that point finishes.
 #   fresh_start = true    the files are started again: the rows of earlier runs are deleted
 #   fresh_start = false   the rows are added to the files (to add a distance to an earlier run)
 fresh_start = true
-results_file(noise) = joinpath(@__DIR__, "..", "..", "results", "sweep_thresholds_$(noise)_tetrahedral_3D_cc.csv")
+results_file(noise) = joinpath(@__DIR__, "..", "..", "results", "tetrahedral_3D_cc", "sweep_thresholds_$(noise)_tetrahedral_3D_cc.csv")
 for noise in noise_models
     if fresh_start || !isfile(results_file(noise))
         open(results_file(noise), "w") do io

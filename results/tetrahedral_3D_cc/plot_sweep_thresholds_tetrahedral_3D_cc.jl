@@ -2,7 +2,7 @@
 # the files that test/tetrahedral_3D_cc/run_tests_sweep_thresholds_tetrahedral_3D_cc.jl writes in this
 # folder: sweep_thresholds_phaseflip_tetrahedral_3D_cc.csv and sweep_thresholds_bitflip_tetrahedral_3D_cc.csv
 #
-#   julia results/plot_sweep_thresholds_tetrahedral_3D_cc.jl     (saves results/thresholds_tetrahedral_3D_cc.png)
+#   julia results/tetrahedral_3D_cc/plot_sweep_thresholds_tetrahedral_3D_cc.jl     (saves thresholds_tetrahedral_3D_cc.png here)
 #
 # Two panels, the logical error rate against p for every distance:
 #   (a) phase flips (Z errors only), with the optimal threshold 1.9% of the string-like logical Z

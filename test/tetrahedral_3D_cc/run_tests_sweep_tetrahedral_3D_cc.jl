@@ -12,7 +12,7 @@ tolerance = 1e-8        # the sweep drops entries smaller than tolerance x the l
 max_entries = 10^5      # and keeps at most this many entries (tolerance = 0.0 and a huge max_entries = exact, only up to d = 5)
 
 # one row per (d, p), written as soon as that point finishes; a new run starts a fresh file
-results_file = joinpath(@__DIR__, "..", "..", "results", "sweep_tetrahedral_3D_cc.csv")
+results_file = joinpath(@__DIR__, "..", "..", "results", "tetrahedral_3D_cc", "sweep_tetrahedral_3D_cc.csv")
 open(results_file, "w") do io
     println(io, "d,p,samples,incorrect,logical_error_rate,tolerance,max_entries")
 end

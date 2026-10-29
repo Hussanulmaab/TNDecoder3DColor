@@ -1,14 +1,14 @@
 # tetrahedral_3D_cc_figures.jl -- the 3D scene for Fig. 1: the code, its logicals, and errors with their syndrome
 #
-#   julia visualizations/tetrahedral_3D_cc_figures.jl                      distance 3, no errors
-#   julia visualizations/tetrahedral_3D_cc_figures.jl 5 mode=loop          distance 5, the loop example
-#   julia visualizations/tetrahedral_3D_cc_figures.jl 5 p=0.02 seed=1 mode=random     (mode = point, loop, random or none)
-#   in the REPL:  include("visualizations/tetrahedral_3D_cc_figures.jl"); show_figures(5)
+#   julia visualizations/tetrahedral_3D_cc/tetrahedral_3D_cc_figures.jl                      distance 3, no errors
+#   julia visualizations/tetrahedral_3D_cc/tetrahedral_3D_cc_figures.jl 5 mode=loop          distance 5, the loop example
+#   julia visualizations/tetrahedral_3D_cc/tetrahedral_3D_cc_figures.jl 5 p=0.02 seed=1 mode=random     (mode = point, loop, random or none)
+#   in the REPL:  include("visualizations/tetrahedral_3D_cc/tetrahedral_3D_cc_figures.jl"); show_figures(5)
 #                 then set_errors!(Z = [1, 2], X = [10], Y = [20]), example!(:point), example!(:loop),
 #                 random_errors!(0.02, 1), clear_errors!()
 #   without a window:  check_examples(5)
 #
-# The code and its geometry come from the viewer, visualizations/visualization_tetrahedral_3D_cc.jl.
+# The code and its geometry come from the viewer, visualization_tetrahedral_3D_cc.jl in this folder.
 # The syndrome is always computed from the code: violated cells = (H_X z) mod 2, violated faces =
 # (H_Z x) mod 2, where z and x are the 0/1 error vectors (a Y error sets both).
 #
