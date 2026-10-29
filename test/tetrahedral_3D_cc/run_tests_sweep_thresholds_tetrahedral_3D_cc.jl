@@ -4,7 +4,7 @@ using .TNDecoder3DColor.tetrahedral_3D_cc_tn
 using .TNDecoder3DColor.tools
 using Random
 
-# The two thresholds of the code, each from one kind of error with its own range of p (perfect
+# The two bit flip and phase flip thresholds of the code, each from one kind of error with its own range of p (perfect
 # syndromes):
 #   phase flips   Z on each qubit with probability p, decoded with the cells. The logical Z is a
 #                 string; the optimal threshold is about 1.9% (Kubica et al., PRL 120, 180501 (2018))
